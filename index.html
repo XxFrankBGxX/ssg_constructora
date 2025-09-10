@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SSG Constructora en Melgar, Tolima. Proyectos urbanísticos, venta de lotes y construcción de casas. Inversión segura en finca raíz." />
+  <meta name="keywords" content="Constructora en Melgar, venta de lotes Tolima, inversión en finca raíz Melgar, urbanización Rincón de San Sebastián" />
+  <meta name="author" content="SSG Constructora" />
+  <title>SSG Constructora | Urbanismo, Construcción & Finca Raíz en Melgar</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Google Fonts: Poppins & Playfair Display -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fa;
+      color: #1a1a1a;
+    }
+    .text-gold { color: #D4AF37; }
+    .text-green { color: #2E8B57; }
+    .bg-gold { background-color: #D4AF37; }
+    .bg-dark { background-color: #0b0b0b; }
+    .hover-gold {
+      transition: all 0.3s ease;
+      transform: translateY(-2px);
+    }
+    .hover-gold:hover {
+      box-shadow: 0 8px 16px rgba(212, 175, 55, 0.3);
+    }
+    .btn-primary {
+      background-color: #D4AF37;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #B8860B;
+      transform: scale(1.02);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      color: #D4AF37;
+      border: 2px solid #D4AF37;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+	
+	.logopie{
+	width: 150px;
+  height: 100px;
+	}
+    .btn-secondary:hover {
+      background-color: #D4AF37;
+      color: white;
+    }
+    .logo-container {
+      width: 180px;
+      height: auto;
+      display: block;
+    }
+    .qr-code {
+      width: 120px;
+      height: 120px;
+      margin: 1rem auto;
+      border: 1px solid #ddd;
+      background: #fff;
+      padding: 10px;
+    }
+    .hero-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      line-height: 1.2;
+    }
+    @media (max-width: 768px) {
+      .hero-text {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Animaciones personalizadas */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .delay-300 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-500 {
+      animation-delay: 0.5s;
+    }
+
+    /* Estilos para el Header Moderno */
+
+    /* Efecto underline animado en menú */
+    .nav-link {
+      position: relative;
+      color: white;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #D4AF37; /* Dorado */
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #D4AF37;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Estilo para íconos sociales */
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    }
+
+    /* Animación del ícono hamburguesa al abrir menú móvil */
+    .menu-open #menu-icon {
+      transform: rotate(90deg);
+    }
+
+    /* Responsive: Menú móvil (oculto por defecto) */
+    #navbar.mobile {
+      display: flex;
+      flex-direction: column; /* ¡ESTO ES CLAVE! Apila las opciones verticalmente */
+      position: absolute;
+      top: 100%; /* Justo debajo del header */
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      border-top: 1px solid #D4AF37;
+      animation: slideDown 0.3s ease-out;
+      width: 100%; /* Ocupa todo el ancho */
+      box-sizing: border-box;
+    }
+
+    #navbar.mobile a {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: left; /* Alineado a la izquierda para mejor legibilidad */
+      color: white;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    #navbar.mobile a:hover {
+      color: #D4AF37;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- Header Moderno y Profesional -->
+  <header class="sticky top-0 z-50 backdrop-blur-sm bg-gradient-to-r from-black via-gray-900 to-black border-b border-yellow-500/20 shadow-xl">
+    <div class="container mx-auto px-4 py-3 md:py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="#" class="flex items-center group">
+        <img src="img/logo_web_con_nombre_transparente.png" alt="Logo SSG Constructora" class="logo-container transition-transform duration-500 group-hover:scale-105 drop-shadow-lg" />
+      </a>
+
+      <!-- Menú de Navegación Desktop -->
+      <nav id="navbar" class="hidden md:flex space-x-8">
+        <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#nosotros" class="nav-link">Nosotros</a>
+        <a href="#proyectos" class="nav-link">Proyectos</a>
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#galeria" class="nav-link">Galería</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+
+      <!-- Iconos Sociales + Menú Móvil -->
+      <div class="flex items-center space-x-4">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/573003018314" target="_blank" class="social-icon bg-green-500 hover:bg-green-600">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <!-- Facebook -->
+        <a href="https://facebook.com/ssgconstructora" target="_blank" class="social-icon bg-blue-600 hover:bg-blue-700">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <!-- Botón Hamburguesa Móvil -->
+        <button id="menu-toggle" class="md:hidden text-white p-2 rounded-lg hover:bg-gray-800 transition focus:outline-none focus:ring-2 focus:ring-yellow-500" aria-label="Abrir menú de navegación">
+          <i id="menu-icon" class="fas fa-bars text-xl transition-transform duration-300"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section con Efecto Marca de Agua Creativa -->
+  <section id="inicio" class="relative h-screen flex items-center justify-center bg-cover bg-center overflow-hidden" style="background-image: url('img/front2.jpg'); background-attachment: fixed;">
+    <!-- Capa de marca de agua creativa -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <!-- Capa 1: Imagen duplicada, desenfocada, translúcida -->
+      <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('img/front2.jpg'); filter: blur(4px); transform: scale(1.05);"></div>
+      <!-- Capa 2: Imagen duplicada, translúcida, desplazada para efecto de profundidad -->
+      <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('img/front2.jpg'); transform: translate(2%, 3%) scale(1.03);"></div>
+      <!-- Capa 3: Overlay oscuro suave -->
+      <div class="absolute inset-0 bg-black opacity-40"></div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <h1 class="hero-text text-white mb-6 opacity-0 translate-y-10 animate-fadeInUp">Construimos tu futuro en Melgar</h1>
+      <p class="text-xl text-white mb-8 max-w-2xl mx-auto opacity-0 translate-y-5 animate-fadeInUp delay-300">Inversiones inteligentes, desarrollo sostenible y calidad en cada detalle.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4 opacity-0 translate-y-5 animate-fadeInUp delay-500">
+        <a href="#proyectos" class="btn-primary">Explorar Proyectos</a>
+        <a href="#contacto" class="btn-secondary">Hablar con nosotros</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section id="nosotros" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 mb-6">Quiénes Somos</h2>
+        <p class="text-lg text-gray-600">Fundada en 2015, SSG Constructora ha sido parte del crecimiento urbano de Melgar, Tolima.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <img src="img/equipo.jpeg"  alt="Equipo SSG Constructora" class="rounded-lg shadow-lg" />
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Nuestra Misión</h3>
+          <p class="text-gray-700 mb-4">Transformar espacios en hogares, promoviendo el desarrollo humano y ambiental en armonía con la naturaleza.</p>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Visión</h3>
+          <p class="text-gray-700 mb-4">Ser líder en construcción sostenible y urbanismo integral en el departamento del Tolima.</p>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Valores</h3>
+          <ul class="space-y-2 text-gray-700">
+            <li><i class="fas fa-check-circle text-green mr-2"></i> Transparencia</li>
+            <li><i class="fas fa-check-circle text-green mr-2"></i> Calidad</li>
+            <li><i class="fas fa-check-circle text-green mr-2"></i> Compromiso</li>
+            <li><i class="fas fa-check-circle text-green mr-2"></i> Innovación</li>
+          </ul>
+          <div class="mt-6 text-center">
+            <p class="text-xl font-bold text-green">“100% compromiso en cada proyecto”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyectos -->
+  <section id="proyectos" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 mb-6">Nuestros Proyectos</h2>
+        <p class="text-lg text-gray-600">Descubre oportunidades únicas de inversión en áreas estratégicas de Melgar.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Proyecto 1 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-2">
+          <img src="img/SanSebastian.jpeg" alt="Urbanización Rincón de San Sebastián" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Rincón de San Sebastián</h3>
+            <p class="text-gray-600 mb-4">Lotes desde 72 m² a 98,7 m² • Precios desde $61.200.000</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-green">En ejecución</span>
+              <button class="btn-primary text-xs">Reservar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Proyecto 2 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-2">
+          <img src="img/Local.png" alt="Locales" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Locales</h3>
+            <p class="text-gray-600 mb-4">Desde 100 m² hasta 180 m² • Personalizadas</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-green">Disponibles</span>
+              <button class="btn-primary text-xs">Consultar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Proyecto 3 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-2">
+          <img src="img/palmas.png" alt="Entre Palmas" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Entre Palmas</h3>
+            <p class="text-gray-600 mb-4">Áreas verdes, caminatas y seguridad</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-green">Próximamente</span>
+              <button class="btn-primary text-xs">Más info</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 text-center">
+        <img src="img/qrssg.jpeg" alt="QR Code" class="qr-code" />
+        <p class="text-sm text-gray-600 mt-2">Escanea para acceder a información detallada</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 mb-6">Nuestros Servicios</h2>
+        <p class="text-lg text-gray-600">Soluciones integrales para tus necesidades inmobiliarias.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-8 rounded-xl shadow-lg text-center">
+          <div class="text-gold mb-4"><i class="fas fa-map-marker-alt text-5xl"></i></div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Venta de Lotes</h3>
+          <p class="text-gray-700">Lotes estratégicos con acceso a servicios y vías principales.</p>
+        </div>
+        <div class="bg-gray-50 p-8 rounded-xl shadow-lg text-center">
+          <div class="text-gold mb-4"><i class="fas fa-home text-5xl"></i></div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Construcción de Casas</h3>
+          <p class="text-gray-700">Diseños personalizados con materiales de alta calidad.</p>
+        </div>
+        <div class="bg-gray-50 p-8 rounded-xl shadow-lg text-center">
+          <div class="text-gold mb-4"><i class="fas fa-handshake text-5xl"></i></div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Asesoría en Finca Raíz</h3>
+          <p class="text-gray-700">Asistencia legal, financiera y técnica para inversionistas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería -->
+  <section id="galeria" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 mb-6">Galería</h2>
+        <p class="text-lg text-gray-600">Nuestras obras en proceso y resultados.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <img src="img/galeria1.jpeg" alt="Obra en ejecución" class="rounded-lg shadow hover:shadow-xl transition" />
+        <img src="img/galeria.jpeg" alt="Render de casa" class="rounded-lg shadow hover:shadow-xl transition" />
+        <img src="img/enejecucion.jpeg" alt="Clientes satisfechos" class="rounded-lg shadow hover:shadow-xl transition" />
+        <img src="img/galeria2.jpeg" alt="Infraestructura" class="rounded-lg shadow hover:shadow-xl transition" />
+        <img src="img/galeria3.jpeg" alt="Áreas verdes" class="rounded-lg shadow hover:shadow-xl transition" />
+        <img src="img/galeria4.jpeg" alt="Plano urbano" class="rounded-lg shadow hover:shadow-xl transition" />
+        <img src="img/galeria5.jpeg" alt="Vista aérea" class="rounded-lg shadow hover:shadow-xl transition" />
+        <img src="img/galeria6.jpeg" alt="Comunidad" class="rounded-lg shadow hover:shadow-xl transition" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="py-20 bg-black text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="text-4xl font-bold mb-6">Contáctanos</h2>
+        <p class="text-lg text-gray-300">Estamos aquí para ayudarte a construir tu sueño.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <form class="space-y-6">
+          <div>
+            <label for="nombre" class="block mb-2">Nombre</label>
+            <input type="text" id="nombre" class="w-full p-3 rounded border border-gray-600 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+          </div>
+          <div>
+            <label for="correo" class="block mb-2">Correo</label>
+            <input type="email" id="correo" class="w-full p-3 rounded border border-gray-600 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+          </div>
+          <div>
+            <label for="telefono" class="block mb-2">Teléfono</label>
+            <input type="tel" id="telefono" class="w-full p-3 rounded border border-gray-600 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+          </div>
+          <div>
+            <label for="proyecto" class="block mb-2">Tipo de Proyecto</label>
+            <select id="proyecto" class="w-full p-3 rounded border border-gray-600 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500">
+              <option value="">Selecciona...</option>
+              <option value="lote">Venta de lote</option>
+              <option value="casa">Construcción de casa</option>
+              <option value="asesoria">Asesoría en finca raíz</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary w-full">Enviar Mensaje</button>
+        </form>
+        <div class="space-y-6">
+          <h3 class="text-2xl font-bold">Información de Contacto</h3>
+          <p><i class="fas fa-phone mr-2"></i> +57 300 301 8314</p>
+          <p><i class="fas fa-phone mr-2"></i> +57 322 929 7443</p>
+          <p><i class="fas fa-envelope mr-2"></i> ssgconstructora@gmail.com</p>
+          <p><i class="fas fa-map-marker-alt mr-2"></i> Melgar, Tolima - Colombia</p>
+          <div class="mt-6">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d418.24781739924805!2d-74.63805441346184!3d4.20731330401625!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3edfba21b1308d%3A0xbd23391e43286548!2sS.S.G%20CONSTRUCTORA%20S.A.S.!5e0!3m2!1sen!2sco!4v1757445148655!5m2!1sen!2sco" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-10">
+    <div class="container mx-auto px-4 text-center">
+      <img src="img/logo_web_transparente.png" alt="Logo SSG Constructora" class="mx-auto mb-1 logopie" />
+      <p>&copy; 2025 SSG Constructora. Todos los derechos reservados.</p>
+      <p class="text-sm text-gray-400">Empresa dedicada a la construcción, urbanismo y finca raíz en Melgar, Tolima.</p>
+    </div>
+  </footer>
+
+  <!-- Botón Flotante de WhatsApp -->
+  <a href="https://wa.me/573003018314" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition z-50">
+    <i class="fab fa-whatsapp text-xl"></i>
+  </a>
+
+  <!-- Menu Mobile Toggle -->
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
+    const menuIcon = document.getElementById('menu-icon');
+
+    // Abre/cierra el menú
+    menuToggle.addEventListener('click', () => {
+      navbar.classList.toggle('mobile');
+      document.body.classList.toggle('menu-open');
+      menuIcon.classList.toggle('fa-bars');
+      menuIcon.classList.toggle('fa-times');
+    });
+
+    // Cierra el menú al hacer clic en un enlace
+    navbar.addEventListener('click', (event) => {
+      if (event.target.tagName === 'A') {
+        navbar.classList.remove('mobile');
+        document.body.classList.remove('menu-open');
+        menuIcon.classList.add('fa-bars');
+        menuIcon.classList.remove('fa-times');
+      }
+    });
+  </script>
+
+  <!-- GSAP Animations -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animaciones en secciones
+    gsap.utils.toArray('.animate-fadeInUp').forEach((el, i) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+
+    // Hover effects on buttons
+    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        gsap.to(btn, { scale: 1.05, duration: 0.3 });
+      });
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, { scale: 1, duration: 0.3 });
+      });
+    });
+  </script>
+
+</body>
+</html>
